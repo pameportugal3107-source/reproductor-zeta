@@ -10,7 +10,6 @@ try {
 const requestType = req.body?.request?.type;
 
 ```
-// Alexa: "abre reproductor zeta"
 if (requestType === 'LaunchRequest') {
   return res.json({
     version: "1.0",
@@ -26,7 +25,6 @@ if (requestType === 'LaunchRequest') {
 
 const intent = req.body?.request?.intent;
 
-// Alexa: "reproduce grupo 5 motor y motivo"
 if (intent && intent.name === 'PlayVideoIntent') {
   const query = intent.slots?.videoQuery?.value || '';
 
