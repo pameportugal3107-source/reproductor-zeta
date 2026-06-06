@@ -1,12 +1,14 @@
 {
-  "name": "reproductor-zeta",
-  "version": "1.0.0",
-  "description": "Alexa YouTube Player",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "express": "^4.19.2"
-  }
+"name": "reproductor-zeta",
+"version": "1.0.0",
+"description": "Alexa YouTube Player",
+"main": "index.js",
+"scripts": {
+"start": "node index.js"
+},
+"dependencies": {
+"express": "^4.19.2",
+"ask-sdk-core": "^2.14.0",
+"yt-search": "^2.13.1"
+}
 }
