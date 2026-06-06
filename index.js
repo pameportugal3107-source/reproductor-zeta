@@ -2,6 +2,7 @@ const express = require('express');
 const yts = require('yt-search');
 
 const app = express();
+
 app.use(express.json());
 
 app.post('/api/alexa', async (req, res) => {
@@ -9,7 +10,7 @@ try {
 const requestType = req.body?.request?.type;
 
 ```
-// Cuando dices: "Alexa, abre reproductor zeta"
+// Alexa: "abre reproductor zeta"
 if (requestType === 'LaunchRequest') {
   return res.json({
     version: "1.0",
@@ -25,15 +26,15 @@ if (requestType === 'LaunchRequest') {
 
 const intent = req.body?.request?.intent;
 
+// Alexa: "reproduce grupo 5 motor y motivo"
 if (intent && intent.name === 'PlayVideoIntent') {
-  const query =
-    intent.slots?.videoQuery?.value || '';
+  const query = intent.slots?.videoQuery?.value || '';
 
-  console.log("BUSCANDO:", query);
+  console.log('BUSCANDO:', query);
 
   const result = await yts(query);
 
-  if (!result.videos.length) {
+  if (!result.videos || result.videos.length === 0) {
     return res.json({
       version: "1.0",
       response: {
@@ -48,7 +49,7 @@ if (intent && intent.name === 'PlayVideoIntent') {
 
   const video = result.videos[0];
 
-  console.log("ENCONTRADO:", video.title);
+  console.log('ENCONTRADO:', video.title);
 
   return res.json({
     version: "1.0",
